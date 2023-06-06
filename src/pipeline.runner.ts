@@ -121,6 +121,9 @@ export class PipelineRunner {
                 setTimeout(async () => await this.waitForPipeline(buildApi, build.project.id, buildQueueResult.id), this.taskParameters.waitPeriod);
             }
         }
+        else {
+            core.info("Build query result is null");
+        }
     }
 
     private async waitForPipeline(buildApi: IBuildApi , projectId: string,  buildId: number) {
