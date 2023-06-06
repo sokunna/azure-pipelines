@@ -233,9 +233,13 @@ export class PipelineRunner {
         if (release != null) {
             log.LogPipelineTriggered(pipelineName, projectName);
             log.LogPipelineTriggerOutput(release);
+            core.info("release status:" + release.status);
             if (release != null && release._links != null) {
                 log.LogOutputUrl(release._links.web.href);
             }
+            
+            let result = await releaseApi.getRelease(projectName, release.id);
+            core.LogPipelineTriggerOutput(result);
         }
     }
 }
