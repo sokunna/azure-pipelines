@@ -141,7 +141,7 @@ export class PipelineRunner {
                 case BuildStatus.Postponed:
                     suffix = ' = Postponed';
             }
-            log.LogInfo(`Pipeline is not yet competed, waiting... (status: ${build.status}${suffix})`);
+            core.info(`Pipeline is not yet competed, waiting... (status: ${build.status}${suffix})`);
             setTimeout(async () => await this.waitForPipeline(buildApi, projectId, buildId), this.taskParameters.waitPeriod);
             return
         }
@@ -159,7 +159,7 @@ export class PipelineRunner {
                 case BuildResult.PartiallySucceeded:
                     suffix = ' = Partially Succeeded';
             }
-            log.LogInfo(`Pipeline result is not Succeeded`)
+            core.info(`Pipeline result is not Succeeded`)
             core.setFailed(`Pipeline result is not Succeeded (2), instead: ${build.result}${suffix}`)
         }
     }
